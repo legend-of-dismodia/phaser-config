@@ -17,12 +17,13 @@ var BootScene = new Phaser.Class({
 
 //------------------insère les liens de tous ce qu'on a besoin---------------//
 
-    this.load.image("tiles", "../Boss_final/assets/tilesets/Dungeon_A1.png");
-    this.load.image("tiles2", "../Boss_final/assets/tilesets/Dungeon_A4.png");
-    this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_B.png");
-    this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_A5.png");
-    this.load.image("tiles5", "../Boss_final/assets/tilesets/Inside_C.png");
-    // this.load.spritesheet('boss', '../Boss_final/assets/tilesets/Inside_C.png', { frameWidth: 48, frameHeight: 48});
+    this.load.image("tiles", "../Boss_final/assets/tilesets/boss/Dungeon_A1.png");
+    this.load.image("tiles2", "../Boss_final/assets/tilesets/boss/Dungeon_A4.png");
+    this.load.image("tiles3", "../Boss_final/assets/tilesets/boss/Dungeon_B.png");
+    this.load.image("tiles4", "../Boss_final/assets/tilesets/boss/Inside_A5.png");
+    this.load.image("tiles5", "../Boss_final/assets/tilesets/boss/Inside_C.png");
+
+    // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
 
     this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/BossMap.json");
     this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
@@ -32,8 +33,6 @@ var BootScene = new Phaser.Class({
 //---------------------on appelle la scène principale-------------------------//
 
   create: function (){
-
-  this.scene.start('WorldScene');
 
   },
 
@@ -169,10 +168,8 @@ player.setCollideWorldBounds(true);
 
 //------------------evenement combat-------------------------------------------//
 
- // enemies = this.physics.add.sprite(700, 420,  "boss", 188);
- //  enemies2 = this.physics.add.sprite(652, 420,  "boss", 187);
- //  enemies3 = this.physics.add.sprite(652, 372,  "boss", 171);
- //  enemies3 = this.physics.add.sprite(700, 372,  "boss", 172);
+ // enemies = this.physics.add.sprite(700, 420, "boss");
+
 
  // enemies.setCollideWorldBounds(true);
 //
@@ -188,7 +185,7 @@ player.setCollideWorldBounds(true);
 //---------------------------quand le perso bouge---------------------------//
 
 
-          update: function (time, delta){
+          update: function (){
 
             if (cursors.left.isDown)
             {

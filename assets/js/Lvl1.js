@@ -57,6 +57,7 @@ var Boot = new Phaser.Class({
         //----------------------bien respecter l'ordre des calques------------------//
 
         const map = this.make.tilemap({ key: "map" });
+
         const tiles = map.addTilesetImage("Inside_A4", "tiles");
         const tiles2 = map.addTilesetImage("Dungeon_A4", "tiles2");
         const tiles3= map.addTilesetImage("Dungeon_A5", "tiles3");
@@ -70,6 +71,7 @@ var Boot = new Phaser.Class({
         const enter = map.createDynamicLayer("enter", tiles3);
         const stairs = map.createDynamicLayer("stairs", tiles4);
     const coffreevent = map.createDynamicLayer("coffreevent", tiles5 );
+
       //----------------------créer l'animation du personnage-----------------------//
 
         const anims = this.anims;
@@ -157,8 +159,6 @@ var Boot = new Phaser.Class({
 
        this.physics.add.overlap(player, stairs, collisionStairs, null, this);
 
-
-
       },
 
 
@@ -166,7 +166,7 @@ var Boot = new Phaser.Class({
       //---------------------------quand le perso bouge---------------------------//
 
 
-                update: function (time, delta){
+                update: function (){
 
                   if (cursors.left.isDown)
                   {
@@ -210,9 +210,9 @@ var Boot = new Phaser.Class({
         function collisionStairs(player, stairs)
             {
 
+              this.scene.destroy('Boot');
 
-          this.input.stopPropagation();
+              this.scene.start('BootScene');
 
-          this.scene.switch('BootScene');
 
         }

@@ -118,8 +118,9 @@
  "tileheight":48,
  "tilesets":[
         {
-         "columns":16,
+
          "firstgid":1,
+         "columns":16,
          "image":"..\/tilesets\/Dungeon_A1.png",
          "imageheight":576,
          "imagewidth":768,
@@ -127,8 +128,11 @@
          "name":"Dungeon_A1",
          "spacing":0,
          "tilecount":192,
+         "tiledversion":"1.2.1",
          "tileheight":48,
-         "tilewidth":48
+         "tilewidth":48,
+         "type":"tileset",
+         "version":1.2
         },
         {
          "columns":16,
@@ -150,7 +154,7 @@
          "imageheight":768,
          "imagewidth":384,
          "margin":0,
-         "name":"Inside_A5",
+         "name":"Inside_A51",
          "spacing":0,
          "tilecount":128,
          "tileheight":48,
@@ -163,7 +167,7 @@
          "imageheight":768,
          "imagewidth":768,
          "margin":0,
-         "name":"Inside_C",
+         "name":"Inside_C1",
          "spacing":0,
          "tilecount":256,
          "tileheight":48,
@@ -176,7 +180,7 @@
          "imageheight":768,
          "imagewidth":768,
          "margin":0,
-         "name":"Dungeon_B",
+         "name":"Dungeon_B1",
          "spacing":0,
          "tilecount":256,
          "tileheight":48,
