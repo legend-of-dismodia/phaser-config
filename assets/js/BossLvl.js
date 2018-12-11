@@ -1,14 +1,14 @@
 //------------------------------première scène--------------------------------//
 
-var BootScene = new Phaser.Class({
+var Boot = new Phaser.Class({
 
   Extends: Phaser.Scene,
 
     initialize:
 
-    function BootScene ()
+    function Boot()
     {
-        Phaser.Scene.call(this, { key: 'BootScene' });
+        Phaser.Scene.call(this, { key: 'Boot' });
     },
 
 //--------------------------précharger la scène------------------------------//
@@ -41,13 +41,13 @@ var BootScene = new Phaser.Class({
 
 //-------------------------on définit la scène principale--------------------//
 
-var WorldScene = new Phaser.Class({
+var World = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
     initialize:
 
-    function WorldScene ()
+    function World ()
     {
         Phaser.Scene.call(this, { key: 'WorldScene' });
     },
