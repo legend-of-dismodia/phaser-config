@@ -15,10 +15,11 @@ var Boot = new Phaser.Class({
 
       this.load.image("tiles", "../Boss_final/assets/tilesets/Inside_A4.png");
       this.load.image("tiles2", "../Boss_final/assets/tilesets/Dungeon_A4.png");
-            this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_A5.png");
+      this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_A5.png");
       this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_B.png");
       this.load.image("tiles5", "../Boss_final/assets/tilesets/Chest.png");
-      this.load.tilemapTiledJSON("map2", "../Boss_final/assets/map/nivo1.json");
+
+      this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/nivo1.json");
       this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
     },
@@ -55,7 +56,7 @@ var Boot = new Phaser.Class({
         //-------------------------on affiche la map--------------------------------//
         //----------------------bien respecter l'ordre des calques------------------//
 
-        const map = this.make.tilemap({ key: "map2" });
+        const map = this.make.tilemap({ key: "map" });
         const tiles = map.addTilesetImage("Inside_A4", "tiles");
         const tiles2 = map.addTilesetImage("Dungeon_A4", "tiles2");
         const tiles3= map.addTilesetImage("Dungeon_A5", "tiles3");
@@ -102,10 +103,7 @@ var Boot = new Phaser.Class({
       //--------------------------gérer les colisions---------------------------------//
       //
       mur.setCollisionByExclusion([-1]);
-      // mur2.setCollisionByExclusion([-1]);
-      // statue.setCollisionByExclusion([-1]);
-      // lave.setCollisionByExclusion([-1]);
-      // solLave.setCollisionByExclusion([-1]);
+
 
       //----------sert à définir la position du personnage sur la map--------------//
 
@@ -157,6 +155,7 @@ var Boot = new Phaser.Class({
       // });
       // });
 
+       this.physics.add.overlap(player, stairs, collisionStairs, null, this);
 
 
 
@@ -207,13 +206,13 @@ var Boot = new Phaser.Class({
 
          });
 
-        // function collisionEnemies(player, enemies)
-        //     {
-        //       // shake the world
-        //   this.cameras.main.shake(300);
-        //
-        //   this.input.stopPropagation();
-        //   // start battle
-        //   this.scene.switch('WorldScene');
-        //
-        // }
+
+        function collisionStairs(player, stairs)
+            {
+
+
+          this.input.stopPropagation();
+
+          this.scene.switch('BootScene');
+
+        }
