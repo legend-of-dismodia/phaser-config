@@ -22,7 +22,7 @@ var BootScene = new Phaser.Class({
     this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_B.png");
     this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_A5.png");
     this.load.image("tiles5", "../Boss_final/assets/tilesets/Inside_C.png");
-
+    this.load.spritesheet('boss', '../Boss_final/assets/tilesets/Inside_C.png', { frameWidth: 48, frameHeight: 48});
 
     this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/BossMap.json");
     this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
@@ -169,8 +169,11 @@ player.setCollideWorldBounds(true);
 
 //------------------evenement combat-------------------------------------------//
 
-// enemies = this.physics.add.sprite(420, 420,  "souris");
-// enemies.setCollideWorldBounds(true);
+ enemies = this.physics.add.sprite(700, 420,  "boss", 188);
+  enemies2 = this.physics.add.sprite(652, 420,  "boss", 187);
+  enemies3 = this.physics.add.sprite(652, 372,  "boss", 171);
+  enemies3 = this.physics.add.sprite(700, 372,  "boss", 172);
+ // enemies.setCollideWorldBounds(true);
 //
 // this.physics.add.overlap(player, enemies, collisionEnemies, null, this);
 // this.physics.add.collider(mur, enemies);
