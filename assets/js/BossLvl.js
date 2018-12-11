@@ -112,15 +112,15 @@ var WorldScene = new Phaser.Class({
 
 //--------------------------gérer les colisions---------------------------------//
 
-// mur.setCollisionByExclusion([-1]);
-// mur2.setCollisionByExclusion([-1]);
-// objet.setCollisionByExclusion([-1]);
-
-
+mur.setCollisionByExclusion([-1]);
+mur2.setCollisionByExclusion([-1]);
+statue.setCollisionByExclusion([-1]);
+lave.setCollisionByExclusion([-1]);
+solLave.setCollisionByExclusion([-1]);
 //----------sert à définir la position du personnage sur la map--------------//
 
-// const spawnPoint = map.findObject("character", obj => obj.name === "Spawn Point");
-// player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y);
+const spawnPoint = map.findObject("character", obj => obj.name === "Spawn Point");
+player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y);
 
 
 //-------------------------on affiche le personnage--------------------------//
@@ -130,13 +130,14 @@ showDebug = false;
 
 //-------------------pour éviter que le personnage sorte du cadre---------------//
 
-// player.setCollideWorldBounds(true);
+player.setCollideWorldBounds(true);
 
 // objet.setDepth(10);
 
- // this.physics.add.collider(player, mur2);
- // this.physics.add.collider(player, objet);
-
+ this.physics.add.collider(player, mur2);
+ this.physics.add.collider(player, solLave);
+ this.physics.add.collider(player, mur);
+  this.physics.add.collider(player, statue);
 //--------verifier si phaser a bien pris en compte les colisions--------------//
 
 // this.input.keyboard.once("keydown_D", event => {
@@ -185,39 +186,39 @@ showDebug = false;
 
           update: function (time, delta){
 
-        //     if (cursors.left.isDown)
-        //     {
-        //         player.setVelocityX(-160);
-        //
-        //         player.anims.play('left', true);
-        //     }
-        //     else if (cursors.right.isDown)
-        //     {
-        //         player.setVelocityX(160);
-        //
-        //         player.anims.play('right', true);
-        //     }
-        //
-        //     else if (cursors.up.isDown)
-        //     {
-        //         player.setVelocityY(-160);
-        //
-        //         player.anims.play('up', true);
-        //     }
-        //     else if (cursors.down.isDown)
-        //     {
-        //         player.setVelocityY(160);
-        //
-        //         player.anims.play('down', true);
-        //     }
-        //     else
-        //     {
-        //
-        //     player.setVelocityX(0);
-        //     player.setVelocityY(0);
-        //
-        //   }
-        //
+            if (cursors.left.isDown)
+            {
+                player.setVelocityX(-160);
+
+                player.anims.play('left', true);
+            }
+            else if (cursors.right.isDown)
+            {
+                player.setVelocityX(160);
+
+                player.anims.play('right', true);
+            }
+
+            else if (cursors.up.isDown)
+            {
+                player.setVelocityY(-160);
+
+                player.anims.play('up', true);
+            }
+            else if (cursors.down.isDown)
+            {
+                player.setVelocityY(160);
+
+                player.anims.play('down', true);
+            }
+            else
+            {
+
+            player.setVelocityX(0);
+            player.setVelocityY(0);
+
+          }
+
        }
 
 
