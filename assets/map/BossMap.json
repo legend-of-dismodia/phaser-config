@@ -135,56 +135,72 @@
          "version":1.2
         },
         {
-         "columns":16,
+
          "firstgid":193,
-         "image":"..\/tilesets\/Dungeon_A4.png",
-         "imageheight":720,
-         "imagewidth":768,
-         "margin":0,
-         "name":"Dungeon_A4",
-         "spacing":0,
-         "tilecount":240,
-         "tileheight":48,
-         "tilewidth":48
+         "columns":16,
+          "image":"..\/tilesets\/Dungeon_A4.png",
+          "imageheight":720,
+          "imagewidth":768,
+          "margin":0,
+          "name":"Dungeon_A4",
+          "spacing":0,
+          "tilecount":240,
+          "tiledversion":"1.2.1",
+          "tileheight":48,
+          "tilewidth":48,
+          "type":"tileset",
+          "version":1.2
         },
         {
-         "columns":8,
+
          "firstgid":433,
+         "columns":8,
          "image":"..\/tilesets\/Inside_A5.png",
          "imageheight":768,
          "imagewidth":384,
          "margin":0,
-         "name":"Inside_A51",
+         "name":"Inside_A5",
          "spacing":0,
          "tilecount":128,
+         "tiledversion":"1.2.1",
          "tileheight":48,
-         "tilewidth":48
+         "tilewidth":48,
+         "type":"tileset",
+         "version":1.2
         },
         {
-         "columns":16,
+
          "firstgid":561,
+         "columns":16,
          "image":"..\/tilesets\/Inside_C.png",
          "imageheight":768,
          "imagewidth":768,
          "margin":0,
-         "name":"Inside_C1",
+         "name":"Inside_C",
          "spacing":0,
          "tilecount":256,
+         "tiledversion":"1.2.1",
          "tileheight":48,
-         "tilewidth":48
+         "tilewidth":48,
+         "type":"tileset",
+         "version":1.2
         },
         {
-         "columns":16,
+      
          "firstgid":817,
+         "columns":16,
          "image":"..\/tilesets\/Dungeon_B.png",
          "imageheight":768,
          "imagewidth":768,
          "margin":0,
-         "name":"Dungeon_B1",
+         "name":"Dungeon_B",
          "spacing":0,
          "tilecount":256,
+         "tiledversion":"1.2.1",
          "tileheight":48,
-         "tilewidth":48
+         "tilewidth":48,
+         "type":"tileset",
+         "version":1.2
         }],
  "tilewidth":48,
  "type":"map",

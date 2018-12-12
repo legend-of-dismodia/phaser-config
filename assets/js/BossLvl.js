@@ -17,11 +17,11 @@ var BootScene = new Phaser.Class({
 
 //------------------insère les liens de tous ce qu'on a besoin---------------//
 
-    this.load.image("tiles", "../Boss_final/assets/tilesets/boss/Dungeon_A1.png");
-    this.load.image("tiles2", "../Boss_final/assets/tilesets/boss/Dungeon_A4.png");
-    this.load.image("tiles3", "../Boss_final/assets/tilesets/boss/Dungeon_B.png");
-    this.load.image("tiles4", "../Boss_final/assets/tilesets/boss/Inside_A5.png");
-    this.load.image("tiles5", "../Boss_final/assets/tilesets/boss/Inside_C.png");
+    this.load.image("tiles", "../Boss_final/assets/tilesets/Dungeon_A1.png");
+    this.load.image("tiles2", "../Boss_final/assets/tilesets/Dungeon_A4.png");
+    this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_B.png");
+    this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_A5.png");
+    this.load.image("tiles5", "../Boss_final/assets/tilesets/Inside_C.png");
 
     // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
 

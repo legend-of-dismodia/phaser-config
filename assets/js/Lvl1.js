@@ -13,14 +13,16 @@ var Boot = new Phaser.Class({
 
   //------------------insère les liens de tous ce qu'on a besoin---------------//
 
-      this.load.image("tiles", "../Boss_final/assets/tilesets/Inside_A4.png");
-      this.load.image("tiles2", "../Boss_final/assets/tilesets/Dungeon_A4.png");
-      this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_A5.png");
-      this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_B.png");
-      this.load.image("tiles5", "../Boss_final/assets/tilesets/Chest.png");
+      this.load.image("tiles10", "../Boss_final/assets/tilesets/Inside_A4.png");
+      this.load.image("tiles11", "../Boss_final/assets/tilesets/Dungeon_A4.png");
+      this.load.image("tiles12", "../Boss_final/assets/tilesets/Dungeon_A5.png");
+      this.load.image("tiles13", "../Boss_final/assets/tilesets/Inside_B.png");
+      this.load.image("tiles14", "../Boss_final/assets/tilesets/Chest.png");
 
       this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/nivo1.json");
-      this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
+      this.load.spritesheet("escalier", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
+this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
+
 
     },
 
@@ -58,19 +60,19 @@ var Boot = new Phaser.Class({
 
         const map = this.make.tilemap({ key: "map" });
 
-        const tiles = map.addTilesetImage("Inside_A4", "tiles");
-        const tiles2 = map.addTilesetImage("Dungeon_A4", "tiles2");
-        const tiles3= map.addTilesetImage("Dungeon_A5", "tiles3");
-        const tiles4 = map.addTilesetImage("Inside_B", "tiles4");
-        const tiles5= map.addTilesetImage("Chest", "tiles5");
+        const tiles10 = map.addTilesetImage("Inside_A4", "tiles10");
+        const tiles11 = map.addTilesetImage("Dungeon_A4", "tiles11");
+        const tiles12= map.addTilesetImage("Dungeon_A5", "tiles12");
+        const tiles13 = map.addTilesetImage("Inside_B", "tiles13");
+        const tiles14= map.addTilesetImage("Chest", "tiles14");
 
       //---------------------------ce sont les calques------------------------------//
 
-        const sol = map.createDynamicLayer("sol", tiles);
-        const mur = map.createDynamicLayer("mur", tiles);
-        const enter = map.createDynamicLayer("enter", tiles3);
-        const stairs = map.createDynamicLayer("stairs", tiles4);
-    const coffreevent = map.createDynamicLayer("coffreevent", tiles5 );
+        const sol = map.createDynamicLayer("sol", tiles10);
+        const mur = map.createDynamicLayer("mur", tiles10);
+        const enter = map.createDynamicLayer("enter", tiles12);
+        const stairs = map.createDynamicLayer("stairs", tiles13);
+    const coffreevent = map.createDynamicLayer("coffreevent", tiles14 );
 
       //----------------------créer l'animation du personnage-----------------------//
 
@@ -125,9 +127,11 @@ var Boot = new Phaser.Class({
       mur.setDepth(10);
 
        this.physics.add.collider(player, mur);
+
        // this.physics.add.collider(player, solLave);
        // this.physics.add.collider(player, mur);
        //  this.physics.add.collider(player, statue);
+
       //--------verifier si phaser a bien pris en compte les colisions--------------//
 
       // this.input.keyboard.once("keydown_D", event => {
@@ -157,62 +161,60 @@ var Boot = new Phaser.Class({
       // });
       // });
 
-       this.physics.add.overlap(player, stairs, collisionStairs, null, this);
+       escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
+       this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
       },
-
 
 
       //---------------------------quand le perso bouge---------------------------//
 
 
-                update: function (){
 
-                  if (cursors.left.isDown)
-                  {
-                      player.setVelocityX(-160);
+    update: function (){
 
-                      player.anims.play('left', true);
-                  }
-                  else if (cursors.right.isDown)
-                  {
-                      player.setVelocityX(160);
+      if (cursors.left.isDown)
+      {
+          player.setVelocityX(-160);
 
-                      player.anims.play('right', true);
-                  }
+          player.anims.play('left', true);
+      }
+      else if (cursors.right.isDown)
+      {
+          player.setVelocityX(160);
 
-                  else if (cursors.up.isDown)
-                  {
-                      player.setVelocityY(-160);
+          player.anims.play('right', true);
+      }
 
-                      player.anims.play('up', true);
-                  }
-                  else if (cursors.down.isDown)
-                  {
-                      player.setVelocityY(160);
+      else if (cursors.up.isDown)
+      {
+          player.setVelocityY(-160);
 
-                      player.anims.play('down', true);
-                  }
-                  else
-                  {
+          player.anims.play('up', true);
+      }
+      else if (cursors.down.isDown)
+      {
+          player.setVelocityY(160);
 
-                  player.setVelocityX(0);
-                  player.setVelocityY(0);
+          player.anims.play('down', true);
+      }
+      else
+      {
 
-                }
+      player.setVelocityX(0);
+      player.setVelocityY(0);
 
-             }
+    }
+
+ }
 
 
          });
 
-
-        function collisionStairs(player, stairs)
+function collisionStairs(player, escalier)
             {
 
-              this.scene.destroy('Boot');
-
-              this.scene.start('BootScene');
+this.scene.switch('BootScene');
 
 
         }

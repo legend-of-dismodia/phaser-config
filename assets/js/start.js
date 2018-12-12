@@ -13,9 +13,9 @@ var config = {
     },
     scene: [
 
-      Boot,
+      // Boot,
       BootScene,
-      World,
+      // World,
       WorldScene,
     ]
 };
