@@ -1,42 +1,4 @@
-//------------------------------première scène--------------------------------//
 
-var BootScene = new Phaser.Class({
-
-  Extends: Phaser.Scene,
-
-    initialize:
-
-    function BootScene()
-    {
-        Phaser.Scene.call(this, { key: 'BootScene' });
-    },
-
-//--------------------------précharger la scène------------------------------//
-
-  preload: function (){
-
-//------------------insère les liens de tous ce qu'on a besoin---------------//
-
-    this.load.image("tiles", "../Boss_final/assets/tilesets/Dungeon_A1.png");
-    this.load.image("tiles2", "../Boss_final/assets/tilesets/Dungeon_A4.png");
-    this.load.image("tiles3", "../Boss_final/assets/tilesets/Dungeon_B.png");
-    this.load.image("tiles4", "../Boss_final/assets/tilesets/Inside_A5.png");
-    this.load.image("tiles5", "../Boss_final/assets/tilesets/Inside_C.png");
-
-    // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
-
-    this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/BossMap.json");
-    this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
-
-  },
-
-//---------------------on appelle la scène principale-------------------------//
-
-  create: function (){
-
-  },
-
-});
 
 //-------------------------on définit la scène principale--------------------//
 
@@ -46,7 +8,7 @@ var WorldScene = new Phaser.Class({
 
     initialize:
 
-    function World ()
+    function WorldScene ()
     {
         Phaser.Scene.call(this, { key: 'WorldScene' });
     },
@@ -64,11 +26,12 @@ var WorldScene = new Phaser.Class({
   //----------------------bien respecter l'ordre des calques------------------//
 
   const map = this.make.tilemap({ key: "map" });
-  const tiles = map.addTilesetImage("Dungeon_A1", "tiles");
-  const tiles2 = map.addTilesetImage("Dungeon_A4", "tiles2");
-  const tiles3 = map.addTilesetImage("Dungeon_B", "tiles3");
-  const tiles4= map.addTilesetImage("Inside_A5", "tiles4");
-  const tiles5 = map.addTilesetImage("Inside_C", "tiles5");
+  const tiles = map.addTilesetImage("DungeonA1", "tiles");
+  const tiles2 = map.addTilesetImage("DungeonA4", "tiles2");
+  const tiles3 = map.addTilesetImage("DungeonB", "tiles3");
+  const tiles4= map.addTilesetImage("InsideA5", "tiles4");
+  const tiles5 = map.addTilesetImage("InsideC", "tiles5");
+
 //---------------------------ce sont les calques------------------------------//
 
   const solLave = map.createDynamicLayer("solLave", tiles);
@@ -116,6 +79,7 @@ mur2.setCollisionByExclusion([-1]);
 statue.setCollisionByExclusion([-1]);
 lave.setCollisionByExclusion([-1]);
 solLave.setCollisionByExclusion([-1]);
+
 //----------sert à définir la position du personnage sur la map--------------//
 
 const spawnPoint = map.findObject("character", obj => obj.name === "Spawn Point");
@@ -137,6 +101,7 @@ player.setCollideWorldBounds(true);
  this.physics.add.collider(player, solLave);
  this.physics.add.collider(player, mur);
   this.physics.add.collider(player, statue);
+
 //--------verifier si phaser a bien pris en compte les colisions--------------//
 
 // this.input.keyboard.once("keydown_D", event => {
@@ -179,7 +144,6 @@ player.setCollideWorldBounds(true);
 
 
 },
-
 
 
 //---------------------------quand le perso bouge---------------------------//
