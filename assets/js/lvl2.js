@@ -211,7 +211,7 @@ objets2.setCollisionByExclusion([-1]);
 
 
          });
-// 
+//
 // function collisionStairs(player, escalier)
 //             {
 //
@@ -219,4 +219,3 @@ objets2.setCollisionByExclusion([-1]);
 //
 //
 //         }
-        //------------------------------première scène--------------------------------//

@@ -21,8 +21,8 @@ var Boot = new Phaser.Class({
 
       this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/nivo1.json");
       this.load.spritesheet("escalier", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
-this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
-
+      this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
+      this.load.spritesheet('souris', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
 
     },
 
@@ -164,6 +164,8 @@ this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfina
        escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
        this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
+       souris = this.physics.add.sprite(900, 350, "souris", 2);
+       this.physics.add.overlap(player, souris, collisionSouris, null, this);
       },
 
 
@@ -213,6 +215,12 @@ this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfina
 
 function collisionStairs(player, escalier)
             {
+// this.scene.switch('World2');
+}
 
-this.scene.switch('Boot3');
+function collisionSouris(player, souris)
+            {
+
+              this.scene.switch('BattleScene');
+               
 }
