@@ -222,5 +222,5 @@ function collisionSouris(player, souris)
             {
 
               this.scene.switch('BattleScene');
-               
+                souris.disableBody(true, true);
 }
