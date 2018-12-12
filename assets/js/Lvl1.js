@@ -215,7 +215,8 @@ var Boot = new Phaser.Class({
 
 function collisionStairs(player, escalier)
             {
-// this.scene.switch('World2');
+    // this.scene.destroy('Boot');
+
 }
 
 function collisionSouris(player, souris)
