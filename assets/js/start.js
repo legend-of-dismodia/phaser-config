@@ -14,10 +14,12 @@ var config = {
     scene: [
 
       // Boot,
-      Boot2,
+      // Boot2,
+      Boot3,
       // BootScene,
       // World,
-      World2
+      // World2
+      World3
       // WorldScene,
     ]
 };

@@ -1,25 +1,27 @@
-var Boot2 = new Phaser.Class({
+var Boot3 = new Phaser.Class({
 
   Extends: Phaser.Scene,
 
     initialize:
 
-    function Boot2 ()
+    function Boot3()
     {
-        Phaser.Scene.call(this, { key: 'Boot2' });
+        Phaser.Scene.call(this, { key: 'Boot3' });
     },
 
     preload: function (){
 
   //------------------insère les liens de tous ce qu'on a besoin---------------//
 
-      this.load.image("tiles15", "../Boss_final/assets/tilesets/Inside_A2.png");
-      this.load.image("tiles16", "../Boss_final/assets/tilesets/Inside_A4.png");
-      this.load.image("tiles17", "../Boss_final/assets/tilesets/Outside_A4.png");
-      this.load.image("tiles18", "../Boss_final/assets/tilesets/Inside_B.png");
-      this.load.image("tiles19", "../Boss_final/assets/tilesets/SF_Outside_C.png");
+      this.load.image("tiles20", "../Boss_final/assets/tilesets/Inside_A2.png");
+      this.load.image("tiles21", "../Boss_final/assets/tilesets/Inside_A4.png");
+      this.load.image("tiles22", "../Boss_final/assets/tilesets/Dungeon_A5.png");
+      this.load.image("tiles23", "../Boss_final/assets/tilesets/Inside_C.png");
+      this.load.image("tiles24", "../Boss_final/assets/tilesets/Dungeon_B.png");
+      this.load.image("tiles25", "../Boss_final/assets/tilesets/Dungeon_C.png");
+      this.load.image("tiles26", "../Boss_final/assets/tilesets/Chest.png");
 
-      this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/niveau2.json");
+      this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/niveau3.json");
       this.load.spritesheet("escalier", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
       this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
@@ -28,22 +30,22 @@ var Boot2 = new Phaser.Class({
 
       create: function (){
 
-      this.scene.start('World2');
+      this.scene.start('World3');
 
       },
 
     });
 
 
-    var World2 = new Phaser.Class({
+    var World3 = new Phaser.Class({
 
         Extends: Phaser.Scene,
 
         initialize:
 
-        function World2 ()
+        function World3 ()
         {
-            Phaser.Scene.call(this, { key: 'World2' });
+            Phaser.Scene.call(this, { key: 'World3' });
         },
 
         preload: function (){
@@ -60,19 +62,20 @@ var Boot2 = new Phaser.Class({
 
         const map = this.make.tilemap({ key: "map" });
 
-        const tiles15 = map.addTilesetImage("Inside_A2", "tiles15");
-        const tiles16 = map.addTilesetImage("Dungeon_A4", "tiles16");
-        const tiles17= map.addTilesetImage("Outside_A4", "tiles17");
-        const tiles18 = map.addTilesetImage("Inside_B", "tiles18");
-        const tiles19= map.addTilesetImage("SF_Outside_C", "tiles19");
-
+        const tiles20 = map.addTilesetImage("Inside_A2", "tiles20");
+        const tiles21 = map.addTilesetImage("Inside_A4", "tiles21");
+        const tiles22= map.addTilesetImage("Dungeon_A5", "tiles22");
+        const tiles23 = map.addTilesetImage("Inside_C", "tiles23");
+        const tiles24= map.addTilesetImage("Dungeon_B", "tiles24");
+        const tiles25= map.addTilesetImage("Dungeon_C", "tiles25");
+        const tiles26= map.addTilesetImage("Chest", "tiles26");
       //---------------------------ce sont les calques------------------------------//
 
-        const sol = map.createDynamicLayer("sol", tiles15);
-        const murs = map.createDynamicLayer("murs", tiles16);
-        const objets2 = map.createDynamicLayer("objets 2", tiles17);
-        const objets = map.createDynamicLayer("objets", tiles19);
-
+        const sol = map.createDynamicLayer("sol", tiles20);
+        const mur = map.createDynamicLayer("mur", tiles21);
+        const decoration = map.createDynamicLayer("decoration", tiles23);
+        const events = map.createDynamicLayer("events", tiles25);
+        const coffreevents = map.createDynamicLayer("coffreevents", tiles26);
 
       //----------------------créer l'animation du personnage-----------------------//
 
@@ -106,12 +109,12 @@ var Boot2 = new Phaser.Class({
 
       //--------------------------gérer les colisions---------------------------------//
       //
-      // mur.setCollisionByExclusion([-1]);
-
+      mur.setCollisionByExclusion([-1]);
+  decoration.setCollisionByExclusion([-1]);
 
       //----------sert à définir la position du personnage sur la map--------------//
 
-      const spawnPoint = map.findObject("character", obj => obj.name === "Spawn Point");
+      const spawnPoint = map.findObject("spawncharacter", obj => obj.name === "Spawn Point");
       player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y);
 
 
@@ -123,12 +126,12 @@ var Boot2 = new Phaser.Class({
       //-------------------pour éviter que le personnage sorte du cadre---------------//
 
       player.setCollideWorldBounds(true);
-murs.setCollisionByExclusion([-1]);
-objets.setCollisionByExclusion([-1]);
-objets2.setCollisionByExclusion([-1]);
+// murs.setCollisionByExclusion([-1]);
+// objets.setCollisionByExclusion([-1]);
+// objets2.setCollisionByExclusion([-1]);
      player.setDepth(10);
 
-     this.physics.add.collider(player, murs);
+     // this.physics.add.collider(player, murs);
 
 
 
@@ -212,11 +215,10 @@ objets2.setCollisionByExclusion([-1]);
 
          });
 
-function collisionStairs(player, escalier)
-            {
-
-this.scene.switch('BootScene');
-
-
-        }
-        //------------------------------première scène--------------------------------//
+// function collisionStairs(player, escalier)
+//             {
+//
+// this.scene.switch('BootScene');
+//
+//
+//         }
