@@ -109,8 +109,8 @@ var Boot3 = new Phaser.Class({
 
       //--------------------------gérer les colisions---------------------------------//
       //
-      mur.setCollisionByExclusion([-1]);
-  decoration.setCollisionByExclusion([-1]);
+
+
 
       //----------sert à définir la position du personnage sur la map--------------//
 
@@ -124,17 +124,12 @@ var Boot3 = new Phaser.Class({
       showDebug = false;
 
       //-------------------pour éviter que le personnage sorte du cadre---------------//
-
+  coffreevents.setCollisionByExclusion([-1]);
       player.setCollideWorldBounds(true);
-// murs.setCollisionByExclusion([-1]);
-// objets.setCollisionByExclusion([-1]);
-// objets2.setCollisionByExclusion([-1]);
+      mur.setCollisionByExclusion([-1]);
+
+     this.physics.add.collider(player, mur);
      player.setDepth(10);
-
-     // this.physics.add.collider(player, murs);
-
-
-
 
       //--------verifier si phaser a bien pris en compte les colisions--------------//
 

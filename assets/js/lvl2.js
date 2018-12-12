@@ -211,12 +211,12 @@ objets2.setCollisionByExclusion([-1]);
 
 
          });
-
-function collisionStairs(player, escalier)
-            {
-
-this.scene.switch('BootScene');
-
-
-        }
+// 
+// function collisionStairs(player, escalier)
+//             {
+//
+// this.scene.switch('Boot3');
+//
+//
+//         }
         //------------------------------première scène--------------------------------//

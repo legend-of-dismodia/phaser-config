@@ -13,11 +13,11 @@ var config = {
     },
     scene: [
 
-      // Boot,
+      Boot,
       // Boot2,
       Boot3,
       // BootScene,
-      // World,
+      World,
       // World2
       World3
       // WorldScene,

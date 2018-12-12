@@ -214,47 +214,5 @@ this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfina
 function collisionStairs(player, escalier)
             {
 
-this.scene.switch('BootScene');
-
-
-        }
-        //------------------------------première scène--------------------------------//
-
-        var BootScene = new Phaser.Class({
-
-          Extends: Phaser.Scene,
-
-            initialize:
-
-            function BootScene()
-            {
-                Phaser.Scene.call(this, { key: 'BootScene' });
-            },
-
-        //--------------------------précharger la scène------------------------------//
-
-          preload: function (){
-
-        //------------------insère les liens de tous ce qu'on a besoin---------------//
-
-            this.load.image("tiles", "../Boss_final/assets/tilesets/DungeonA1.png");
-            this.load.image("tiles2", "../Boss_final/assets/tilesets/DungeonA4.png");
-            this.load.image("tiles3", "../Boss_final/assets/tilesets/DungeonB.png");
-            this.load.image("tiles4", "../Boss_final/assets/tilesets/InsideA5.png");
-            this.load.image("tiles5", "../Boss_final/assets/tilesets/InsideC.png");
-
-            // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
-
-            this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/BossMap.json");
-            this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
-
-          },
-
-        //---------------------on appelle la scène principale-------------------------//
-
-          create: function (){
-            this.scene.start('WorldScene');
-
-          },
-
-        });
+this.scene.switch('Boot3');
+}
