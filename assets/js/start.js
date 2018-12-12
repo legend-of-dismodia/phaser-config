@@ -13,10 +13,12 @@ var config = {
     },
     scene: [
 
-      Boot,
-      BootScene,
-      World,
-      WorldScene,
+      // Boot,
+      Boot2,
+      // BootScene,
+      // World,
+      World2
+      // WorldScene,
     ]
 };
 var game = new Phaser.Game(config);
