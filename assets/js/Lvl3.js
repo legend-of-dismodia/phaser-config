@@ -164,9 +164,10 @@ var Boot3 = new Phaser.Class({
        // escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
        // this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
+       // escalier3 = this.physics.add.sprite(850, 158, "escalier3", 20);
+       // this.physics.add.overlap(player, escalier3, collisionStairs, null, this);
        escalier3 = this.physics.add.sprite(850, 158, "escalier3", 20);
-       this.physics.add.overlap(player, escalier3, collisionStairs, null, this);
-
+       this.physics.add.overlap(player, escalier3, collisionStairs3, null, this);
       },
 
 
@@ -214,7 +215,7 @@ var Boot3 = new Phaser.Class({
 
          });
 
-         function collisionStairs(player, escalier3)
+         function collisionStairs3(player, escalier3)
                      {
              console.log( this.scene );
              this.scene.switch('BootScene');

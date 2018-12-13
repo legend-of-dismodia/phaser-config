@@ -166,7 +166,7 @@ objets2.setCollisionByExclusion([-1]);
        // this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
        escalier2 = this.physics.add.sprite(850, 158, "escalier2", 20);
-       this.physics.add.overlap(player, escalier2, collisionStairs, null, this);
+       this.physics.add.overlap(player, escalier2, collisionStairs2, null, this);
 
       },
 
@@ -215,7 +215,7 @@ objets2.setCollisionByExclusion([-1]);
 
          });
 
-         function collisionStairs(player, escalier2)
+         function collisionStairs2(player, escalier2)
                      {
              console.log( this.scene );
              this.scene.switch('Boot3');
