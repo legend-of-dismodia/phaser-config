@@ -9,8 +9,8 @@ var BattleScene = new Phaser.Class({
     preload: function ()
     {
         // load resources
-        this.load.spritesheet("player", "assets/spritesheet/princessfinal clone.png", { frameWidth: 80, frameHeight: 80 });
-        this.load.image("souris", "assets/spritesheet/Monster.png", { frameWidth: 48, frameHeight: 48});
+    this.load.spritesheet("player", "assets/spritesheet/princessfinal clone.png", { frameWidth: 80, frameHeight: 80 });
+    this.load.image("souris", "assets/spritesheet/Monster.png", { frameWidth: 48, frameHeight: 48});
     this.load.image("fond", "../Boss_final/assets/spritesheet/battle.png");
     },
     create: function ()
@@ -21,11 +21,11 @@ var BattleScene = new Phaser.Class({
         // on wake event we call startBattle too
         // this.sys.events.on('wake', this.startBattle, this);
     },
+
     startBattle: function() {
         // player character - warrior
-        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20, 50);
+        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20, 50, 1, 100);
         this.add.existing(warrior);
-
 
 
         var souris = new Enemy(this, 500, 400, "souris", null, "souris", 50, 3);
@@ -48,6 +48,7 @@ var BattleScene = new Phaser.Class({
         // if we have victory or game over
         if(this.checkEndBattle()) {
             this.endBattle();
+
             return;
         }
         do {
@@ -80,6 +81,7 @@ var BattleScene = new Phaser.Class({
         // if all enemies are dead we have victory
         for(var i = 0; i < this.enemies.length; i++) {
             if(this.enemies[i].living)
+
                 victory = false;
         }
         var gameOver = true;
@@ -124,12 +126,14 @@ var Unit = new Phaser.Class({
 
     initialize:
 
-    function Unit(scene, x, y, texture, frame, type, hp, damage, magie) {
+    function Unit(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp) {
         Phaser.GameObjects.Sprite.call(this, scene, x, y, texture, frame)
         this.type = type;
         this.maxHp = this.hp = hp;
         this.damage = damage; // default damage
         this.magie = magie;
+        this.lvl = lvl;
+        this.maxXp = this.xp = xp;
         this.living = true;
         this.menuItem = null;
     },
@@ -152,6 +156,7 @@ var Unit = new Phaser.Class({
               this.scene.events.emit("Message", this.type + "  magieAttaque " + target.type + " for " + this.magie + " magie");
           }
         },
+
     takeDamage: function(damage) {
         this.hp -= damage;
         if(this.hp <= 0) {
@@ -161,7 +166,11 @@ var Unit = new Phaser.Class({
             this.visible = false;
             this.menuItem = null;
         }
+
+
     },
+
+
 
     takeMagic: function(magie) {
         this.hp -= magie;
@@ -188,8 +197,8 @@ var PlayerCharacter = new Phaser.Class({
     Extends: Unit,
 
     initialize:
-    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage, magie) {
-        Unit.call(this, scene, x, y, texture, frame, type, hp, damage, magie);
+    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp) {
+        Unit.call(this, scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp);
         // flip the image so I don"t have to edit it manually
         this.flipX = true;
 
