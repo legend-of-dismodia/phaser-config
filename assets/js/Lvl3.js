@@ -12,15 +12,13 @@ var Boot3 = new Phaser.Class({
     preload: function (){
 
   //------------------insère les liens de tous ce qu'on a besoin---------------//
-  this.load.tilemapTiledJSON("map3", "../Boss_final/assets/map/niveau3.json");
+  this.load.tilemapTiledJSON("map3", "../Boss_final/assets/map/lv3.json");
 
-      this.load.image("tiles20", "../Boss_final/assets/tilesets/Inside_A2.png");
-      this.load.image("tiles21", "../Boss_final/assets/tilesets/Inside_A4.png");
-      this.load.image("tiles22", "../Boss_final/assets/tilesets/Dungeon_A5.png");
-      this.load.image("tiles23", "../Boss_final/assets/tilesets/Inside_C.png");
-      this.load.image("tiles24", "../Boss_final/assets/tilesets/Dungeon_B.png");
-      this.load.image("tiles25", "../Boss_final/assets/tilesets/Dungeon_C.png");
-      this.load.image("tiles26", "../Boss_final/assets/tilesets/Chest.png");
+      this.load.image("tiles20", "../Boss_final/assets/tilesets/Dungeon_A2.png");
+      this.load.image("tiles21", "../Boss_final/assets/tilesets/Dungeon_A4.png");
+      this.load.image("tiles22", "../Boss_final/assets/tilesets/Dungeon_B.png");
+      this.load.image("tiles23", "../Boss_final/assets/tilesets/Dungeon_C.png");
+
 
 
       this.load.spritesheet("escalier3", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
@@ -63,20 +61,18 @@ var Boot3 = new Phaser.Class({
 
         const map = this.make.tilemap({ key: "map3" });
 
-        const tiles20 = map.addTilesetImage("Inside_A2", "tiles20");
-        const tiles21 = map.addTilesetImage("Inside_A4", "tiles21");
-        const tiles22= map.addTilesetImage("Dungeon_A5", "tiles22");
-        const tiles23 = map.addTilesetImage("Inside_C", "tiles23");
-        const tiles24= map.addTilesetImage("Dungeon_B", "tiles24");
-        const tiles25= map.addTilesetImage("Dungeon_C", "tiles25");
-        const tiles26= map.addTilesetImage("Chest", "tiles26");
+        const tiles20 = map.addTilesetImage("Dungeon_A2", "tiles20");
+        const tiles21 = map.addTilesetImage("Dungeon_A4", "tiles21");
+        const tiles22= map.addTilesetImage("Dungeon_B", "tiles22");
+        const tiles23= map.addTilesetImage("Dungeon_C", "tiles23");
+
       //---------------------------ce sont les calques------------------------------//
 
         const sol = map.createDynamicLayer("sol", tiles20);
         const mur = map.createDynamicLayer("mur", tiles21);
-        const decoration = map.createDynamicLayer("decoration", tiles23);
-        const events = map.createDynamicLayer("events", tiles25);
-        const coffreevents = map.createDynamicLayer("coffreevents", tiles26);
+        const decoration1 = map.createDynamicLayer("decoration1", tiles22);
+    const decoration2 = map.createDynamicLayer("decoration2", tiles23);
+
 
       //----------------------créer l'animation du personnage-----------------------//
 
@@ -115,7 +111,7 @@ var Boot3 = new Phaser.Class({
 
       //----------sert à définir la position du personnage sur la map--------------//
 
-      const spawnPoint = map.findObject("spawncharacter", obj => obj.name === "Spawn Point");
+      const spawnPoint = map.findObject("character", obj => obj.name === "Spawn Point");
       player = this.physics.add.sprite(spawnPoint.x, spawnPoint.y);
 
 
@@ -125,10 +121,11 @@ var Boot3 = new Phaser.Class({
       showDebug = false;
 
       //-------------------pour éviter que le personnage sorte du cadre---------------//
-  coffreevents.setCollisionByExclusion([-1]);
+
       player.setCollideWorldBounds(true);
       mur.setCollisionByExclusion([-1]);
-
+    decoration1.setCollisionByExclusion([-1]);
+  decoration2.setCollisionByExclusion([-1]);
      this.physics.add.collider(player, mur);
      player.setDepth(10);
 

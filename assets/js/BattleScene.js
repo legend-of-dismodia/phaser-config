@@ -24,7 +24,7 @@ var BattleScene = new Phaser.Class({
 
     startBattle: function() {
         // player character - warrior
-        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20, 50, 1, 100);
+        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20, 50, 1, 100, 100);
         this.add.existing(warrior);
 
 
@@ -109,7 +109,7 @@ var BattleScene = new Phaser.Class({
         this.heroes.length = 0;
         this.enemies.length = 0;
         for(var i = 0; i < this.units.length; i++) {
-            // link item
+
             this.units[i].destroy();
         }
         this.units.length = 0;
@@ -126,7 +126,7 @@ var Unit = new Phaser.Class({
 
     initialize:
 
-    function Unit(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp) {
+    function Unit(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp, mana) {
         Phaser.GameObjects.Sprite.call(this, scene, x, y, texture, frame)
         this.type = type;
         this.maxHp = this.hp = hp;
@@ -134,6 +134,7 @@ var Unit = new Phaser.Class({
         this.magie = magie;
         this.lvl = lvl;
         this.maxXp = this.xp = xp;
+        this.maxMana = this.mana = mana;
         this.living = true;
         this.menuItem = null;
     },
@@ -144,8 +145,11 @@ var Unit = new Phaser.Class({
     // attack the target unit
     attack: function(target) {
         if(target.living) {
+          target.takeMana(this.maxMana);
             target.takeDamage(this.damage);
             this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + this.damage + " damage");
+              this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + this.damage + " damage");
+
         }
 
     },
@@ -171,6 +175,9 @@ var Unit = new Phaser.Class({
     },
 
 
+    takeMana: function(maxMana) {
+        this.mana -= 10;
+    },
 
     takeMagic: function(magie) {
         this.hp -= magie;
@@ -197,7 +204,7 @@ var PlayerCharacter = new Phaser.Class({
     Extends: Unit,
 
     initialize:
-    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp) {
+    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp, mana) {
         Unit.call(this, scene, x, y, texture, frame, type, hp, damage, magie, lvl, xp);
         // flip the image so I don"t have to edit it manually
         this.flipX = true;
