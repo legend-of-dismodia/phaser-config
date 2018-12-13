@@ -72,7 +72,7 @@ var Boot = new Phaser.Class({
         const mur = map.createDynamicLayer("mur", tiles10);
         const enter = map.createDynamicLayer("enter", tiles12);
         const stairs = map.createDynamicLayer("stairs", tiles13);
-    const coffreevent = map.createDynamicLayer("coffreevent", tiles14 );
+        const coffreevent = map.createDynamicLayer("coffreevent", tiles14 );
 
       //----------------------créer l'animation du personnage-----------------------//
 
@@ -164,8 +164,8 @@ var Boot = new Phaser.Class({
        escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
        this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
-       souris = this.physics.add.sprite(900, 350, "souris", 2);
-       this.physics.add.overlap(player, souris, collisionSouris, null, this);
+       souris1 = this.physics.add.sprite(900, 350, "souris", 2);
+       this.physics.add.overlap(player, souris1, collisionSouris1, null, this);
       },
 
 
@@ -215,13 +215,13 @@ var Boot = new Phaser.Class({
 
 function collisionStairs(player, escalier)
             {
-    console.log( this.scene );              
+    console.log( this.scene );
     this.scene.switch('Boot2');
 }
 
-function collisionSouris(player, souris)
+function collisionSouris1(player, souris1)
             {
 
               this.scene.switch('BattleScene');
-                souris.disableBody(true, true);
+                souris1.disableBody(true, true);
 }

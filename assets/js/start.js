@@ -16,8 +16,9 @@ var config = {
       World,
 
       BattleScene,
+    BossBattle,
       UIScene,
-
+UIScene2,
       Boot2,
       World2,
       // //
@@ -27,6 +28,8 @@ var config = {
       //
       BootScene,
       WorldScene,
+
+
 
     ]
 };

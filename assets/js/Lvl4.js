@@ -23,8 +23,7 @@ var BootScene = new Phaser.Class({
     this.load.image("tiles4", "../Boss_final/assets/tilesets/InsideA5.png");
     this.load.image("tiles5", "../Boss_final/assets/tilesets/InsideC.png");
 
-    // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
-
+    this.load.spritesheet("boss", "assets/spritesheet/boss.png",  { frameWidth: 374, frameHeight: 354});
 
     this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
@@ -65,7 +64,7 @@ var WorldScene = new Phaser.Class({
   //----------------------bien respecter l'ordre des calques------------------//
 
   const map = this.make.tilemap({ key: "map4" });
-  
+
   const tiles = map.addTilesetImage("DungeonA1", "tiles");
   const tiles2 = map.addTilesetImage("DungeonA4", "tiles2");
   const tiles3 = map.addTilesetImage("DungeonB", "tiles3");
@@ -173,14 +172,14 @@ player.setCollideWorldBounds(true);
 
 //------------------evenement combat-------------------------------------------//
 
- // enemies = this.physics.add.sprite(700, 420, "boss");
+ enemies1 = this.physics.add.sprite(700, 420, "boss");
 
 
- // enemies.setCollideWorldBounds(true);
-//
-// this.physics.add.overlap(player, enemies, collisionEnemies, null, this);
+enemies1.setCollideWorldBounds(true);
+
+this.physics.add.overlap(player, enemies1, collisionEnemies1, null, this);
 // this.physics.add.collider(mur, enemies);
-// this.physics.add.collider(objet, enemies);
+// // this.physics.add.collider(objet, enemies);
 
 
 },
@@ -229,13 +228,11 @@ player.setCollideWorldBounds(true);
 
    });
 
-  // function collisionEnemies(player, enemies)
-  //     {
-  //       // shake the world
-  //   this.cameras.main.shake(300);
-  //
-  //   this.input.stopPropagation();
-  //   // start battle
-  //   // this.scene.switch('BattleScene');
-  //
-  // }
+  function collisionEnemies1(player, enemies1)
+      {
+        // shake the world
+
+    // start battle
+    this.scene.switch('BossBattle');
+  enemies1.disableBody(true, true);
+  }
