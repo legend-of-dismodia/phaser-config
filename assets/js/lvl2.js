@@ -12,15 +12,15 @@ var Boot2 = new Phaser.Class({
     preload: function (){
 
   //------------------insère les liens de tous ce qu'on a besoin---------------//
+      this.load.tilemapTiledJSON("map2", "assets/map/niveau2.json");
 
-      this.load.image("tiles15", "../Boss_final/assets/tilesets/Inside_A2.png");
-      this.load.image("tiles16", "../Boss_final/assets/tilesets/Inside_A4.png");
-      this.load.image("tiles17", "../Boss_final/assets/tilesets/Outside_A4.png");
-      this.load.image("tiles18", "../Boss_final/assets/tilesets/Inside_B.png");
-      this.load.image("tiles19", "../Boss_final/assets/tilesets/SF_Outside_C.png");
+      this.load.image("tiles15", "assets/tilesets/Inside_A2.png");
+      this.load.image("tiles16", "assets/tilesets/Inside_A4.png");
+      this.load.image("tiles17", "assets/tilesets/Outside_A4.png");
+      this.load.image("tiles18", "assets/tilesets/Inside_B.png");
+      this.load.image("tiles19", "assets/tilesets/SF_Outside_C.png");
 
-      this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/niveau2.json");
-      this.load.spritesheet("escalier", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
+      this.load.spritesheet("escalier2", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
       this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
 
@@ -58,7 +58,7 @@ var Boot2 = new Phaser.Class({
         //-------------------------on affiche la map--------------------------------//
         //----------------------bien respecter l'ordre des calques------------------//
 
-        const map = this.make.tilemap({ key: "map" });
+        const map = this.make.tilemap({ key: "map2" });
 
         const tiles15 = map.addTilesetImage("Inside_A2", "tiles15");
         const tiles16 = map.addTilesetImage("Dungeon_A4", "tiles16");
@@ -165,6 +165,9 @@ objets2.setCollisionByExclusion([-1]);
        // escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
        // this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
+       escalier2 = this.physics.add.sprite(850, 158, "escalier2", 20);
+       this.physics.add.overlap(player, escalier2, collisionStairs, null, this);
+
       },
 
 
@@ -211,11 +214,11 @@ objets2.setCollisionByExclusion([-1]);
 
 
          });
-//
-// function collisionStairs(player, escalier)
-//             {
-//
-// this.scene.switch('Boot3');
-//
-//
-//         }
+
+         function collisionStairs(player, escalier2)
+                     {
+             console.log( this.scene );
+             this.scene.switch('Boot3');
+
+
+         }

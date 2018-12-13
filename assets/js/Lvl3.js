@@ -12,6 +12,7 @@ var Boot3 = new Phaser.Class({
     preload: function (){
 
   //------------------insère les liens de tous ce qu'on a besoin---------------//
+  this.load.tilemapTiledJSON("map3", "../Boss_final/assets/map/niveau3.json");
 
       this.load.image("tiles20", "../Boss_final/assets/tilesets/Inside_A2.png");
       this.load.image("tiles21", "../Boss_final/assets/tilesets/Inside_A4.png");
@@ -21,8 +22,8 @@ var Boot3 = new Phaser.Class({
       this.load.image("tiles25", "../Boss_final/assets/tilesets/Dungeon_C.png");
       this.load.image("tiles26", "../Boss_final/assets/tilesets/Chest.png");
 
-      this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/niveau3.json");
-      this.load.spritesheet("escalier", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
+
+      this.load.spritesheet("escalier3", "../Boss_final/assets/tilesets/Inside_B.png", { frameWidth: 48, frameHeight: 48});
       this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
 
@@ -60,7 +61,7 @@ var Boot3 = new Phaser.Class({
         //-------------------------on affiche la map--------------------------------//
         //----------------------bien respecter l'ordre des calques------------------//
 
-        const map = this.make.tilemap({ key: "map" });
+        const map = this.make.tilemap({ key: "map3" });
 
         const tiles20 = map.addTilesetImage("Inside_A2", "tiles20");
         const tiles21 = map.addTilesetImage("Inside_A4", "tiles21");
@@ -163,6 +164,9 @@ var Boot3 = new Phaser.Class({
        // escalier = this.physics.add.sprite(1032, 407, "escalier", 20);
        // this.physics.add.overlap(player, escalier, collisionStairs, null, this);
 
+       escalier3 = this.physics.add.sprite(850, 158, "escalier3", 20);
+       this.physics.add.overlap(player, escalier3, collisionStairs, null, this);
+
       },
 
 
@@ -210,10 +214,10 @@ var Boot3 = new Phaser.Class({
 
          });
 
-// function collisionStairs(player, escalier)
-//             {
-//
-// this.scene.switch('BootScene');
-//
-//
-//         }
+         function collisionStairs(player, escalier3)
+                     {
+             console.log( this.scene );
+             this.scene.switch('BootScene');
+
+
+         }

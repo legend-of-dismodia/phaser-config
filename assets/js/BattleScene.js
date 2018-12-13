@@ -2,9 +2,7 @@ var BattleScene = new Phaser.Class({
 
     Extends: Phaser.Scene,
 
-    initialize:
-
-    function BattleScene ()
+    initialize: function BattleScene ()
     {
         Phaser.Scene.call(this, { key: "BattleScene" });
     },
@@ -25,7 +23,7 @@ var BattleScene = new Phaser.Class({
     },
     startBattle: function() {
         // player character - warrior
-        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20);
+        var warrior = new PlayerCharacter(this, 900, 400, "player", 11, "Warrior", 100, 20, 50);
         this.add.existing(warrior);
 
 
@@ -97,9 +95,13 @@ var BattleScene = new Phaser.Class({
         if(action == "attack") {
             this.units[this.index].attack(this.enemies[target]);
         }
-        // next turn in 3 seconds
+        if(action == "magie"){
+        this.units[this.index].magieAttaque(this.enemies[target]);
+         }
         this.time.addEvent({ delay: 3000, callback: this.nextTurn, callbackScope: this });
     },
+
+
     endBattle: function() {
         // clear state, remove sprites
         this.heroes.length = 0;
@@ -122,11 +124,12 @@ var Unit = new Phaser.Class({
 
     initialize:
 
-    function Unit(scene, x, y, texture, frame, type, hp, damage) {
+    function Unit(scene, x, y, texture, frame, type, hp, damage, magie) {
         Phaser.GameObjects.Sprite.call(this, scene, x, y, texture, frame)
         this.type = type;
         this.maxHp = this.hp = hp;
         this.damage = damage; // default damage
+        this.magie = magie;
         this.living = true;
         this.menuItem = null;
     },
@@ -140,9 +143,28 @@ var Unit = new Phaser.Class({
             target.takeDamage(this.damage);
             this.scene.events.emit("Message", this.type + " attacks " + target.type + " for " + this.damage + " damage");
         }
+
     },
+
+    magieAttaque: function(target) {
+          if(target.living) {
+              target.takeMagic(this.magie);
+              this.scene.events.emit("Message", this.type + "  magieAttaque " + target.type + " for " + this.magie + " magie");
+          }
+        },
     takeDamage: function(damage) {
         this.hp -= damage;
+        if(this.hp <= 0) {
+            this.hp = 0;
+            this.menuItem.unitKilled();
+            this.living = false;
+            this.visible = false;
+            this.menuItem = null;
+        }
+    },
+
+    takeMagic: function(magie) {
+        this.hp -= magie;
         if(this.hp <= 0) {
             this.hp = 0;
             this.menuItem.unitKilled();
@@ -166,8 +188,8 @@ var PlayerCharacter = new Phaser.Class({
     Extends: Unit,
 
     initialize:
-    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage) {
-        Unit.call(this, scene, x, y, texture, frame, type, hp, damage);
+    function PlayerCharacter(scene, x, y, texture, frame, type, hp, damage, magie) {
+        Unit.call(this, scene, x, y, texture, frame, type, hp, damage, magie);
         // flip the image so I don"t have to edit it manually
         this.flipX = true;
 
@@ -300,7 +322,7 @@ var ActionsMenu = new Phaser.Class({
     function ActionsMenu(x, y, scene) {
         Menu.call(this, x, y, scene);
         this.addMenuItem("Attack");
-        this.addMenuItem("Super");
+        this.addMenuItem("magie");
     },
     confirm: function() {
         // we select an action and go to the next menu and choose from the enemies to apply the action
@@ -402,6 +424,7 @@ var UIScene = new Phaser.Class({
         this.enemiesMenu.deselect();
         this.currentMenu = null;
         this.battleScene.receivePlayerSelection("attack", index);
+        // this.battleScene.receivePlayerSelection2("magie", index);
     },
     onPlayerSelect: function(id) {
         // when its player turn, we select the active hero item and the first action

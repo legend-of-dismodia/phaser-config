@@ -16,7 +16,7 @@ var BootScene = new Phaser.Class({
   preload: function (){
 
 //------------------insère les liens de tous ce qu'on a besoin---------------//
-
+    this.load.tilemapTiledJSON("map4", "../Boss_final/assets/map/BossMap.json");
     this.load.image("tiles", "../Boss_final/assets/tilesets/DungeonA1.png");
     this.load.image("tiles2", "../Boss_final/assets/tilesets/DungeonA4.png");
     this.load.image("tiles3", "../Boss_final/assets/tilesets/DungeonB.png");
@@ -25,7 +25,7 @@ var BootScene = new Phaser.Class({
 
     // this.load.spritesheet('boss', '../Boss_final/assets/spritesheet/Monster.png', { frameWidth: 48, frameHeight: 48});
 
-    this.load.tilemapTiledJSON("map", "../Boss_final/assets/map/BossMap.json");
+
     this.load.spritesheet('princess', '../Boss_final/assets/spritesheet/princessfinal clone.png', { frameWidth: 80, frameHeight: 80});
 
   },
@@ -64,7 +64,8 @@ var WorldScene = new Phaser.Class({
   //-------------------------on affiche la map--------------------------------//
   //----------------------bien respecter l'ordre des calques------------------//
 
-  const map = this.make.tilemap({ key: "map" });
+  const map = this.make.tilemap({ key: "map4" });
+  
   const tiles = map.addTilesetImage("DungeonA1", "tiles");
   const tiles2 = map.addTilesetImage("DungeonA4", "tiles2");
   const tiles3 = map.addTilesetImage("DungeonB", "tiles3");

@@ -12,22 +12,21 @@ var config = {
         }
     },
     scene: [
-
-
       Boot,
       World,
+
       BattleScene,
       UIScene,
 
-      // Boot2,
-      // World2,
+      Boot2,
+      World2,
+      // //
+      Boot3,
+      World3,
       //
-      // Boot3,
-      // World3,
       //
-      //
-      // BootScene,
-      // WorldScene,
+      BootScene,
+      WorldScene,
 
     ]
 };
